@@ -35,11 +35,11 @@ export default function App() {
   // ];
 
   const array = [
-    { "images/pic1.jpg": "Closeup of a human eye" },
-    { "images/pic2.jpg": "Rock that looks like a wave" },
-    { "images/pic3.jpg": "Purple and white pansies" },
-    { "images/pic4.jpg": "Section of wall from a pharoah's tomb" },
-    { "images/pic5.jpg": "Large moth on a leaf" }
+    { src: "images/pic1.jpg", alt: "Closeup of a human eye" },
+    { src: "images/pic2.jpg", alt: "Rock that looks like a wave" },
+    { src: "images/pic3.jpg", alt: "Purple and white pansies" },
+    { src: "images/pic4.jpg", alt: "Section of wall from a pharoah's tomb" },
+    { src: "images/pic5.jpg", alt: "Large moth on a leaf" }
   ];
 
   function handleClick(event) {
@@ -50,25 +50,27 @@ export default function App() {
     <>
       <h1>Image gallery example</h1>
       <div className="full-img">
-        <img
+        {/* <img
           onClick={handleClick}
           className="displayed-img"
           src="images/pic1.jpg"
           alt="Closeup of a human eye"
-        />
-        {/* {array.map((src, alt) => {
-          return (
-            <img
-              onClick={(handleClick)}
-              key={alt}
-              src={src}
-            />
-          );
-        })} */}
+        /> */}
         <div className="overlay"></div>
         <button onClick={handleClick} className="dark">Darken</button>
       </div>
-      <div className="thumb-bar"></div>
+      <div className="thumb-bar">
+        {array.map((src, i, alt) => {
+          return (
+            <img
+              onClick={handleClick}
+              key={i}
+              src={src}
+              alt={alt}
+            />
+          );
+        })}
+      </div>
     </>
   );
 }

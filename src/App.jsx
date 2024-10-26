@@ -1,40 +1,7 @@
-// export default function App() {
-//   const urls = [
-//     "https://images.dog.ceo/breeds/shiba/shiba-11.jpg",
-//     "https://images.dog.ceo/breeds/shiba/shiba-12.jpg",
-//     "https://images.dog.ceo/breeds/shiba/shiba-14.jpg",
-//     "https://images.dog.ceo/breeds/shiba/shiba-17.jpg",
-//     "https://images.dog.ceo/breeds/shiba/shiba-2.jpg",
-//     "https://images.dog.ceo/breeds/shiba/shiba-3i.jpg",
-//     "https://images.dog.ceo/breeds/shiba/shiba-4.jpg",
-//     "https://images.dog.ceo/breeds/shiba/shiba-5.jpg",
-//     "https://images.dog.ceo/breeds/shiba/shiba-6.jpg",
-//     "https://images.dog.ceo/breeds/shiba/shiba-7.jpg",
-//     "https://images.dog.ceo/breeds/shiba/shiba-8.jpg",
-//     "https://images.dog.ceo/breeds/shiba/shiba-9.jpg",
-//  ];
-//  return (
-//    <>
-//      {urls.map((url, i) => {
-//        return (
-//          <img key={i} src={url} />
-//        );
-//      })}
-//    </>
-//  );
-// }
-
+import { useState } from "react";
 export default function App() {
-  // const obj = {
-  //   "src": "src",
-  //   "alt": "alt"
-  // };
 
-  // const objArray = [
-  //   obj.key = ,
-  // ];
-
-  const array = [
+  const images = [
     { src: "images/pic1.jpg", alt: "Closeup of a human eye" },
     { src: "images/pic2.jpg", alt: "Rock that looks like a wave" },
     { src: "images/pic3.jpg", alt: "Purple and white pansies" },
@@ -42,35 +9,52 @@ export default function App() {
     { src: "images/pic5.jpg", alt: "Large moth on a leaf" }
   ];
 
+  const [displayedSrc, setDisplayedSrc] = useState(images[0].src);
+  const [displayedAlt, setDisplayedAlt] = useState(images[0].alt);
+  const [button, setButton] = useState("Dark");
+
+  function setDisplayed(event) {
+    event.preventDefault();
+    setDisplayedSrc(event.target.src);
+    setDisplayedAlt(event.target.alt);
+  }
+
   function handleClick(event) {
     event.preventDefault();
-    alert("hello");
+    if (button == "Dark") {
+      setButton("Light");
+    } else {
+      setButton("Dark");
+    }
   }
+
   return (
     <>
       <h1>Image gallery example</h1>
+
       <div className="full-img">
-        {/* <img
-          onClick={handleClick}
+        <img
           className="displayed-img"
-          src="images/pic1.jpg"
-          alt="Closeup of a human eye"
-        /> */}
-        <div className="overlay"></div>
-        <button onClick={handleClick} className="dark">Darken</button>
-      </div>
+          src={displayedSrc}
+          alt={displayedAlt}
+        />
+        <div className="overlay" style={{ backgroundColor: button === "Dark" ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0)" }}></div>
+        <button onClick={handleClick} className="dark">{button}</button>
+      </div >
+
       <div className="thumb-bar">
-        {array.map((src, i, alt) => {
+        {images.map((image, index) => {
           return (
             <img
-              onClick={handleClick}
-              key={i}
-              src={src}
-              alt={alt}
+              onClick={setDisplayed}
+              key={index}
+              src={image.src}
+              alt={image.alt}
             />
           );
         })}
       </div>
+
     </>
   );
 }

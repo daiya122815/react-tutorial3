@@ -38,7 +38,7 @@ export default function App() {
           src={displayedSrc}
           alt={displayedAlt}
         />
-        <div className="overlay" style={{ backgroundColor: button === "Dark" ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0)" }}></div>
+        <div className="overlay" style={{ backgroundColor: button === "Dark" ? "rgba(0, 0, 0, 0)" : "rgba(0, 0, 0, 0.5)" }}></div>
         <button onClick={handleClick} className="dark">{button}</button>
       </div >
 

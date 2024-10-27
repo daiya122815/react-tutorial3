@@ -21,11 +21,12 @@ export default function App() {
 
   function handleClick(event) {
     event.preventDefault();
-    if (button == "Dark") {
-      setButton("Light");
-    } else {
-      setButton("Dark");
-    }
+    // if (button == "Dark") {
+    //   setButton("Light");
+    // } else {
+    //   setButton("Dark");
+    // }
+    setButton(button === "Dark" ? "Light" : "Dark");
   }
 
   return (
